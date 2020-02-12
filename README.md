@@ -51,12 +51,36 @@ pClient.trade().orderBook({ "market": "BDXBTC", "side": 2, "offset": 0, "limit":
 // orderDepth
 pClient.trade().orderDepth({ "market": "BDXBTC", "limit": 10, "interval": "1" });
 
+// Private endpoints
+
+// get balance
+authClient.asset().getBalance(['ETH', 'BTC', 'USDT']);
+// balance history
+authClient.asset().balanceHistory({ 'asset': "ETH", 'start_time': 1576750273, 'end_time': 1577095873, 'offset': 0, 'limit': 10, 'type': 'deposit' });
+// place limit order
+authClient.trade().putLimit({ "market": "BDXBTC", "side": 1, "amount": "100", "price": "0.05", "source": "beldex exchange" });
+// plca marker order
+authClient.trade().putMarket({ "market": "BDXBTC", "side": 1, "amount": "100", "source": "beldex exchange" });
+// order cancel
+authClient.trade().orderCancel({ "market": "BDXBTC", "order_id": 84 });
+// order pending asset
+authClient.trade().orderPending({ "market": "BDXBTC", "offset": 0, "limit": 2, "user_id": 84 });
+// order pending details
+authClient.trade().orderPendingDetails({ "market": "BDXBTC", "order_id": 84 });
+// order deals
+authClient.trade().orderDeals({ "order_id": 84, "offset": 0, "limit": 3 });
+// finished orders
+authClient.trade().orderFinished({ "offset": 0, "limit": 3, "market": "BDXBTC", "start_time": 0, "end_time": 0 });
+// finished order details
+authClient.trade().finishedOrderDetails({ "order_id": 84 });
+
+
 ```
 
 #### WebSocket
 
 ```javascript
-const { WebsocketClient } = require('bdxi/node-beldex-api');
+const { WebsocketClient } = require('@bdxi/node-beldex-api');
 const wss = new WebsocketClient();
 
 wss.connect();

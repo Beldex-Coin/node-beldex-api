@@ -62,7 +62,7 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000, axiosCon
                     return get(`/api/v1/market/status/${market}?period=${period}`);
                 },
                 async totalVolume() {
-                    return get('/api/v1/market/total/volume')
+                    return get('/api/v1/market/total-volume')
                 },
                 async ticker(market) {
                     return get(`/api/v1/market/ticker/${market}`);

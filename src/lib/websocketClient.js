@@ -1,30 +1,22 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const events_1 = require("events");
-const ws_1 = __importDefault(require("socket.io-client"));
-const pako_1 = __importDefault(require("pako"));
-const crypto_1 = __importDefault(require("crypto"));
-class WebsocketClient extends events_1.EventEmitter {
-    constructor(websocketURI='https://ws.beldex.io') {
-        super();
+const ws = require("socket.io-client");
+const pako = require("pako");
+const crypto = require("crypto");
+class WebsocketClient {
+    constructor(websocketURI = 'https://ws.beldex.io') {
         this.websocketUri = websocketURI;
     }
     connect() {
         if (this.socket) {
             this.socket.close();
         }
-        this.socket = new ws_1.default(this.websocketUri);
+        this.socket = new ws(this.websocketUri);
         console.log(`Connecting to ${this.websocketUri}`);
         this.socket.on('connect', () => this.onOpen());
         this.socket.on('disconnect', () => this.onClose());
-        this.socket.on('message', data => this.onMessage(data));
     }
     login(apiKey, apiSecret, passphrase) {
         const timestamp = new Date().getTime();
-        const hmac = crypto_1.default.createHmac('sha256', apiSecret);
+        const hmac = crypto.default.createHmac('sha256', apiSecret);
         const signature = hmac.update(timestamp + 'GET' + '/users/ws/verify').digest('base64');
 
         const request = {
@@ -49,7 +41,6 @@ class WebsocketClient extends events_1.EventEmitter {
     onOpen() {
         console.log(`Connected to ${this.websocketUri}`);
         this.initTimer();
-        this.emit('connection');
     }
     initTimer() {
         this.interval = setInterval(() => {
@@ -65,17 +56,18 @@ class WebsocketClient extends events_1.EventEmitter {
             this.initTimer();
         }
     }
-    onMessage(data) {
-        this.resetTimer();
-        if (data.error) {
-            return data;
-        }
-        if (!(typeof data === 'string')) {
-            let response = JSON.parse(pako_1.default.inflate(data, { to: 'string' }));
-            console.log(JSON.stringify(response));
-
-        }
-        this.emit('message', data);
+    onMessage(cb) {
+        return this.socket.on('message',data=>{
+            if (data.error) {
+                cb(data);
+            }
+            if (!(typeof data === 'string')) {
+                let response =pako.inflate(data, { to: 'string' });
+                cb(response);
+    
+            };
+        });
+        
     }
     onClose() {
         console.log(`Websocket connection is closed.`);
@@ -84,7 +76,6 @@ class WebsocketClient extends events_1.EventEmitter {
             clearInterval(this.interval);
             this.interval = null;
         }
-        this.emit('close');
     }
     close() {
         if (this.socket) {

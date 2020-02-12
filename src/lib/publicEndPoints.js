@@ -1,21 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const axios = __importDefault(require("axios"));
-const querystring = __importStar(require("querystring"));
+const axios = require("axios");
 
-
-function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000, axiosConfig = {}) {
-    const axiosInstance = axios.default.create(Object.assign({ baseURL: apiUri, timeout }));
+function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000) {
+    const axiosInstance = axios.create(Object.assign({ baseURL: apiUri, timeout }));
     async function get(url) {
         return axiosInstance.get(url)
             .then((res) => res.data)
@@ -28,7 +14,6 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000, axiosCon
             });
     }
     async function post(url, body) {
-        const bodyJson = JSON.stringify(body);
         return axiosInstance
             .post(url, body, {
             headers: Object.assign({ 'content-type': 'application/json; charset=utf-8' })

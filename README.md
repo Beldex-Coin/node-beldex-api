@@ -71,8 +71,6 @@ authClient.trade().orderDeals({ "order_id": 84, "offset": 0, "limit": 3 });
 authClient.trade().orderFinished({ "offset": 0, "limit": 3, "market": "BDXBTC", "start_time": 0, "end_time": 0 });
 // finished order details
 authClient.trade().finishedOrderDetails({ "order_id": 84 });
-
-
 ```
 
 #### WebSocket
@@ -106,5 +104,14 @@ wss.send({ "method": "order.subscribe", "params": ["BDXUSDT"] });
 wss.send({ "method": "asset.query", "params": ["BDX", "BTC"] });
 // asset subscription
 wss.send({ "method": "asset.subscribe", "params": ["BDX", "BTC"] });
+```
 
+##### Listen to subscription
+
+All the subscriptions can be handled using `onMessage` function. The subscription can be differentiated using the `method` value from the response data.
+
+```javascript
+wss.onMessage(data => {
+    console.log(data);
+});
 ```

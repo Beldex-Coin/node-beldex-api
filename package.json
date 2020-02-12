@@ -1,6 +1,6 @@
 {
   "name": "@bdxi/node-beldex-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A light weight sdk for Beldex exchange API and WebSocket",
   "main": "src/index.js",
   "scripts": {

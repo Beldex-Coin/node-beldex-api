@@ -20,13 +20,13 @@ npm install @bdxi/node-beldex-api
 
 #### API
 
-```
+```javascript
 const { PublicClient } = require('@bdxi/node-beldex-api');
 const { Authenticate } = require('@bdxi/node-beldex-api');
 const pClient = new PublicClient();
 const authClient = new Authenticate(api-key, secret, passphrase);
 
-// get server time
+// get time
 pClient.server().getTime();
 // market list
 pClient.market().list();
@@ -36,20 +36,26 @@ pClient.market().summary(['BTCUSDT', 'ETHUSDT', 'BDXBTC']);
 pClient.market().status('ETHBTC', 86400);
 // market volume
 pClient.market().getVolume();
-// market 24hrs-ticker
-pClient.market().getTicker('ETHBTC');
+// market 24hrs-tickers
+pClient.market().ticker('ETHBTC');
 // market kline
-pClient.market().postKline({ market: "ETHBTC", start: 1577750400, end: 1577923200, interval: 86400 });
+pClient.market().kline({ market: "ETHBTC", start: 1577750400, end: 1577923200, interval: 86400 });
 // market last
-pClient.market().getLast('ETHBTC');
+pClient.market().last('ETHBTC');
 // market deals
-pClient.market().postDeals({ "market": "BDXBTC", "limit": 10 });
+pClient.market().deals({ "market": "BDXBTC", "limit": 10 });
+// get asset
+pClient.asset().list('BTC');
+// orderBook
+pClient.trade().orderBook({ "market": "BDXBTC", "side": 2, "offset": 0, "limit": 2 });
+// orderDepth
+pClient.trade().orderDepth({ "market": "BDXBTC", "limit": 10, "interval": "1" });
 
 ```
 
 #### WebSocket
 
-```
+```javascript
 const { WebsocketClient } = require('bdxi/node-beldex-api');
 const wss = new WebsocketClient();
 

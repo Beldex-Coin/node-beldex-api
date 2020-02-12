@@ -1,0 +1,31 @@
+{
+  "name": "@bdxi/node-beldex-api",
+  "version": "1.0.0",
+  "description": "A light weight sdk for Beldex exchange API and WebSocket",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beldex-Coin/node-beldex-api.git"
+  },
+  "keywords": [
+    "beldex",
+    "API",
+    "SDK",
+    "bdx"
+  ],
+  "author": "Lifwon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Beldex-Coin/node-beldex-api/issues"
+  },
+  "homepage": "https://github.com/Beldex-Coin/node-beldex-api#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "events": "^3.1.0",
+    "pako": "^1.0.11",
+    "socket.io-client": "^2.3.0"
+  }
+}

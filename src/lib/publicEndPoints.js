@@ -81,7 +81,7 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000, axiosCon
         asset() {
             return {
                 async list(asset_name) {
-                    return get(`/api/v1/asset/${asset_name ? asset_name : ''}`);
+                    return get(`/api/v1/assets/${asset_name ? asset_name : ''}`);
                 }
             };
         },

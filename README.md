@@ -1,9 +1,9 @@
 # Introduction
----
+
 A light weight package written in javascript for beldex exchange api and websocket. You can also write your own code to connect to the beldex API. Refer [Beldex API Documentation](https://apidoc.beldex.io). 
 
-# Prirequisite
----
+# Prerequisite
+
 - API Key
 - Secret
 - Passphrase
@@ -11,7 +11,7 @@ A light weight package written in javascript for beldex exchange api and websock
 You can create the API Key, Secret and Passphrase from the `My Accounts` page of Beldex exchange
 
 # Installation
----
+
 ```
 npm install @bdxi/node-beldex-api
 ```

@@ -34,8 +34,6 @@ pClient.market().list();
 pClient.market().summary(['BTCUSDT', 'ETHUSDT', 'BDXBTC']);
 // market status
 pClient.market().status('ETHBTC', 86400);
-// market volume
-pClient.market().getVolume();
 // market 24hrs-tickers
 pClient.market().ticker('ETHBTC');
 // market kline

@@ -83,19 +83,19 @@ wss.connect();
 wss.login(api-key, secret, passphrase);
 
 // State subscription
-wss.send({ method: "state.subscribe", params: ["BDXBTC"] });
+wss.send({ "method": "state.subscribe", params: ["BDXBTC"] });
 // deals subscription
-wss.send({ id: 1, method: "deals.subscribe", params: ["BDXBTC"] });
+wss.send({ "method": "deals.subscribe", params: ["BDXBTC"] });
 // kline subscription
-wss.send({ id: 1, method: "kline.subscribe", params: ["BDXBTC", 60] });
+wss.send({ "method": "kline.subscribe", params: ["BDXBTC", 60] });
 // depth subscription
 wss.send({ "method": "depth.subscribe", "params": ["BDXUSDT", 50, '0'] });
 // depth query
-wss.send({ method: "depth.query", params: ["BDXBTC", 50, '0'] });
+wss.send({ "method": "depth.query", params: ["BDXBTC", 50, '0'] });
 // kline query
 wss.send({ "method": "kline.query", "params": ["BDXBTC", 1575539107, 1580723167, 3600] });
 // order query
-wss.send({ method: "order.query", params: ["BTCUSDT", 0, 50] });
+wss.send({ "method": "order.query", params: ["BTCUSDT", 0, 50] });
 // order history
 wss.send({ "method": "order.history", "params": ["BDXBTC", 1580636703, 1580723103, 0, 50] });
 // order subscription

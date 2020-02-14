@@ -61,7 +61,7 @@ class WebsocketClient {
             if (data.error) {
                 cb(data);
             }
-            if (!(typeof data === 'string')) {
+            else if (!(typeof data === 'string')) {
                 let response =pako.inflate(data, { to: 'string' });
                 cb(response);
     

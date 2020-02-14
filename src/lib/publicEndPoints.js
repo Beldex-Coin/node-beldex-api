@@ -9,23 +9,20 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000) {
                 console.log(error.response && error.response !== undefined
                     ? JSON.stringify(error.response.data)
                     : error);
-                console.log(error.message ? error.message : `${url} error`);
-                throw error;
             });
     }
     async function post(url, body) {
         return axiosInstance
             .post(url, body, {
-            headers: Object.assign({ 'content-type': 'application/json; charset=utf-8' })
-        })
+                headers: Object.assign({ 'content-type': 'application/json; charset=utf-8' })
+            })
             .then(res => res.data)
             .catch(error => {
-            console.log(error.response && error.response !== undefined && error.response.data
-                ? JSON.stringify(error.response.data)
-                : error);
-            console.log(error.message ? error.message : `${url} error`);
-            throw error;
-        });
+                console.log(error.response && error.response !== undefined && error.response.data
+                    ? JSON.stringify(error.response.data)
+                    : error);
+
+            });
     }
     return {
         server() {
@@ -50,16 +47,16 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000) {
                     return get('/api/v1/market/total-volume')
                 },
                 async ticker(market) {
-                    return get(`/api/v1/market/ticker/${market}`);
+                    return get(`/api/v1/market/ticker/${(market) ? market : ''}`);
                 },
                 async kline(payload) {
                     return post('/api/v1/market/kline', payload);
                 },
                 async last(market) {
-                   return get(`/api/v1/market/last/${market}`);
+                    return get(`/api/v1/market/last/${market}`);
                 },
                 async deals(payload) {
-                    return post('/api/v1/market/deals',payload);
+                    return post('/api/v1/market/deals', payload);
                 }
             };
         },
@@ -73,10 +70,10 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000) {
         trade() {
             return {
                 orderBook(payload) {
-                    return post('/api/v1/order/book',payload);
+                    return post('/api/v1/order/book', payload);
                 },
                 orderDepth(payload) {
-                    return post('/api/v1/order/depth',payload);
+                    return post('/api/v1/order/depth', payload);
                 }
             };
         }

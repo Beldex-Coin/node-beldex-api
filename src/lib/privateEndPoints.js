@@ -35,8 +35,6 @@ function Authenticate(key, secret, passphrase, apiUri = `https://api.beldex.io`,
                 console.log(error.response && error.response !== undefined && error.response.data
                     ? JSON.stringify(error.response.data)
                     : error);
-                console.log(error.message ? error.message : `${url} error`);
-                throw error;
             });
     }
 
@@ -51,8 +49,6 @@ function Authenticate(key, secret, passphrase, apiUri = `https://api.beldex.io`,
                 console.log(error.response && error.response !== undefined && error.response.data
                     ? JSON.stringify(error.response.data)
                     : error);
-                console.log(error.message ? error.message : `${url} error`);
-                throw error;
             });
     }
     return {

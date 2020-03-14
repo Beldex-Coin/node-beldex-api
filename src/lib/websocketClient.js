@@ -2,7 +2,7 @@ const ws = require("socket.io-client");
 const pako = require("pako");
 const crypto = require("crypto");
 class WebsocketClient {
-    constructor(websocketURI = 'https://ws.beldex.io') {
+    constructor(websocketURI = 'wss://ws.beldex.io') {
         this.websocketUri = websocketURI;
     }
     connect() {

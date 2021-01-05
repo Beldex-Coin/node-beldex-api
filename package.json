@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Beldex-Coin/node-beldex-api#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "events": "^3.1.0",
     "pako": "^1.0.11",
     "socket.io-client": "^2.3.0"

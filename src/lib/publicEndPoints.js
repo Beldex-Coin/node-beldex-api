@@ -55,8 +55,8 @@ function PublicClient(apiUri = `https://api.beldex.io`, timeout = 3000) {
                 async last(market) {
                     return get(`/api/v1/market/last/${market}`);
                 },
-                async deals(payload) {
-                    return post('/api/v1/market/deals', payload);
+                async deals(market,limit) {
+                    return get(`/api/v1/market/deals/${market}?limit=${limit}`);
                 }
             };
         },

@@ -34,6 +34,8 @@ pClient.market().list();
 pClient.market().summary(['BTCUSDT', 'ETHUSDT', 'BDXBTC']);
 // market status
 pClient.market().status('ETHBTC', 86400);
+// total volume
+pClient.market().totalVolume();
 // market 24hrs-tickers
 pClient.market().ticker('ETHBTC');
 // market kline
@@ -41,7 +43,7 @@ pClient.market().kline({ market: "ETHBTC", start: 1577750400, end: 1577923200, i
 // market last
 pClient.market().last('ETHBTC');
 // market deals
-pClient.market().deals({ "market": "BDXBTC", "limit": 10 });
+pClient.market().deals('BDXBTC',1);
 // get asset
 pClient.asset().list('BTC');
 // orderBook

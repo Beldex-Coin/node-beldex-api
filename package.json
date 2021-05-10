@@ -26,6 +26,6 @@
     "axios": "^0.21.1",
     "events": "^3.1.0",
     "pako": "^1.0.11",
-    "socket.io-client": "^2.3.0"
+    "socket.io-client": "^4.0.2"
   }
 }
